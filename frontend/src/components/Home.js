@@ -4,11 +4,7 @@ import Speaker from './Speaker'
 const Home = () => {
     return(
         <div>
-            <p>
-                Speakers
-            </p>
-            
-                <Speaker />
+            <Speaker />
         </div>
     )
 }
