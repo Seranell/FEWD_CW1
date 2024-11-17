@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { HiChevronDoubleRight } from "react-icons/hi";
-import { HiChevronDoubleLeft } from "react-icons/hi";
-// import Description from "./Description"
-import Tag from "./Tag"; 
+import { HiChevronDoubleRight, HiChevronDoubleLeft } from "react-icons/hi";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Tag from "./Tag";
+import Description from "./Description";
 
 function DisplaySpeakers() {
   const [talks, setTalks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedTag, setSelectedTag] = useState(null);
+  const [openDesc, setOpenDesc] = useState(null);
 
   function NextArrow(props) {
     const { className, onClick } = props;
     return (
-      <div
-        className={`${className} group`}
-        onClick={onClick}
-      >
+      <div className={`${className} group`} onClick={onClick}>
         <HiChevronDoubleRight
           className="text-black transition-transform duration-200 group-hover:scale-125"
           size={28}
@@ -30,10 +27,7 @@ function DisplaySpeakers() {
   function PrevArrow(props) {
     const { className, onClick } = props;
     return (
-      <div
-        className={`${className} group`}
-        onClick={onClick}
-      >
+      <div className={`${className} group`} onClick={onClick}>
         <HiChevronDoubleLeft
           className="text-black transition-transform duration-200 group-hover:scale-125"
           size={28}
@@ -41,8 +35,6 @@ function DisplaySpeakers() {
       </div>
     );
   }
-
-  
 
   useEffect(() => {
     fetch("http://localhost:3001/talks")
@@ -81,6 +73,13 @@ function DisplaySpeakers() {
         },
       },
     ],
+    afterChange: (index) => {
+      setOpenDesc(null);
+    }
+  };
+
+  const toggleDesc = (index) => {
+    setOpenDesc(openDesc === index ? null : index);
   };
 
   if (loading) {
@@ -101,7 +100,7 @@ function DisplaySpeakers() {
       )}
 
       <Slider {...settings}>
-        {filteredTalks.map((talk) => (
+        {filteredTalks.map((talk, slideIndex) => (
           <div className="flex flex-col items-center bg-white p-6 rounded-lg gap-y-4" key={talk.id}>
             {talk.img && (
               <img src={talk.img} alt={talk.speaker} className="w-60 h-60 object-cover mb-4 rounded-full"/>
@@ -113,8 +112,8 @@ function DisplaySpeakers() {
               {talk.tags.map((tag, index) => (
                 <Tag key={index} text={tag} onClick={() => setSelectedTag(tag)} />
               ))}
-              {/* <Decription /> */}
             </div>
+            <Description desc={talk.description} isOpen={openDesc === slideIndex} onToggle={() => toggleDesc(slideIndex)}/>
           </div>
         ))}
       </Slider>
