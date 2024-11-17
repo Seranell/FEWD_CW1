@@ -3,7 +3,7 @@ import Speaker from './Speaker'
 
 const Home = () => {
     return(
-        <div>
+        <div> 
             <Speaker />
         </div>
     )
