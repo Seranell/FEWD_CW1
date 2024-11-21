@@ -1,10 +1,19 @@
 import React from 'react';
-import Speaker from './Speaker'
-
+// import DisplaySpeakers from './DisplaySpeakers'
+import Search from './Search';
+import useFetchData from './useFetchData';
+import Session from './Session';
 const Home = () => {
+    const {status, talks} = useFetchData();
+    if (status === 'fetched')
     return(
-        <div> 
-            <Speaker />
+        <div>
+            <div>
+                <Search talks = {talks}/>
+            </div>
+            <div className='pt-5'>
+                {/* <Session talks = {talks}/> */}
+            </div>
         </div>
     )
 }
