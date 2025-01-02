@@ -1,18 +1,25 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
+import { useLocalStorage } from "./useLocalStorage";
 
 const ItineraryContext = createContext();
 
 export const ItineraryProvider = ({ children }) => {
-  const [itinerary, setItinerary] = useState([]);
+  const [itinerary, setItinerary] = useLocalStorage("itinerary", []);
 
-  const addTalkToItinerary = (talk) => {
+  const add = (talk) => {
     if (!itinerary.some((item) => item.id === talk.id)) {
       setItinerary([...itinerary, talk]);
     }
   };
 
+  const remove = (id) => {
+    setItinerary(itinerary.filter((item) => item.id !== id));
+  };
+
   return (
-    <ItineraryContext.Provider value={{ itinerary, addTalkToItinerary }}>
+    <ItineraryContext.Provider
+      value={{ itinerary, add, remove }}
+    >
       {children}
     </ItineraryContext.Provider>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { useItinerary } from "./ItineraryContext";
 
 const Itinerary = () => {
-  const { itinerary } = useItinerary();
+  const { itinerary, remove } = useItinerary();
 
   return (
     <div className="p-4 border rounded shadow">
@@ -15,7 +15,7 @@ const Itinerary = () => {
             <li key={talk.id} className="p-2 border rounded">
               <h3 className="font-semibold">{talk.title}</h3>
               <p>{talk.speaker}</p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-2">
                 {talk.tags.map((tag, index) => (
                   <span
                     key={index}
@@ -25,6 +25,12 @@ const Itinerary = () => {
                   </span>
                 ))}
               </div>
+              <button
+                onClick={() => remove(talk.id)}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              >
+                Remove
+              </button>
             </li>
           ))}
         </ul>

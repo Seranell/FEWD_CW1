@@ -21,7 +21,7 @@ const Talk = ({ talks }) => {
         <div style={{ margin: "0 auto", width: "80%" }}>
           <Slider {...settings}>
             {talks.map((talk, index) => (
-              <div key={talk.id}>
+              <div key={talk.id} className="flex flex-col items-center">
                 {talk.img && (
                   <img
                     src={talk.img}
@@ -29,8 +29,9 @@ const Talk = ({ talks }) => {
                     className="w-60 h-60 object-cover mb-4 rounded-full"
                   />
                 )}
-                <p>{talk.speaker}</p>
+                <p class = "font-bold text-lg">{talk.speaker}</p>
                 <p>{talk.title}</p>
+                <p>{talk.time}</p>
                 <div>
                 <Stars />
                 </div>

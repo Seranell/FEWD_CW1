@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useItinerary } from "./ItineraryContext";
 
 const AddItem = ({ talk }) => {
-  const { addTalkToItinerary } = useItinerary();
+  const { add } = useItinerary();
   const [isAdded, setIsAdded] = useState(false);
 
   const handleAdd = () => {
-    addTalkToItinerary(talk);
+    add(talk);
     setIsAdded(true);
   };
 
