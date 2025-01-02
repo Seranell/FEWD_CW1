@@ -43,8 +43,10 @@ const Talk = ({ talks }) => {
                   desc={talk.description}
                   isOpen={openDesc === index}
                   onToggle={() => toggleDesc(index)}
-                />
-                <AddItem talk={talk} />
+                  >
+                  {openDesc === index && <AddItem talk={talk} />}
+                  </Description>
+                
               </div>
             ))}
           </Slider>

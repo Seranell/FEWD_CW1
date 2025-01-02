@@ -6,7 +6,6 @@ export const ItineraryProvider = ({ children }) => {
   const [itinerary, setItinerary] = useState([]);
 
   const addTalkToItinerary = (talk) => {
-    // Prevent duplicates
     if (!itinerary.some((item) => item.id === talk.id)) {
       setItinerary([...itinerary, talk]);
     }
