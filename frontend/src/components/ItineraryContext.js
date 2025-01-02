@@ -7,8 +7,14 @@ export const ItineraryProvider = ({ children }) => {
   const [itinerary, setItinerary] = useLocalStorage("itinerary", []);
 
   const add = (talk) => {
-    if (!itinerary.some((item) => item.id === talk.id)) {
+    const isFilled = itinerary.some(
+      (item) => item.time === talk.time
+    );
+
+    if (!isFilled && !itinerary.some((item) => item.id === talk.id)) {
       setItinerary([...itinerary, talk]);
+    } else {
+      alert("You're already attending a talk at this time, please remove talk first before adding this talk.");
     }
   };
 
@@ -17,9 +23,7 @@ export const ItineraryProvider = ({ children }) => {
   };
 
   return (
-    <ItineraryContext.Provider
-      value={{ itinerary, add, remove }}
-    >
+    <ItineraryContext.Provider value={{ itinerary, add, remove }}>
       {children}
     </ItineraryContext.Provider>
   );
