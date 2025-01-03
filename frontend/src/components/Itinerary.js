@@ -1,5 +1,7 @@
 import React from "react";
 import { useItinerary } from "./ItineraryContext";
+import Tag from "./Tag";
+import Stars from "./Stars";
 
 const Itinerary = () => {
   const { itinerary, remove } = useItinerary();
@@ -26,9 +28,9 @@ const Itinerary = () => {
 
   return (
     <div className="p-4 border rounded shadow">
-      <h2 className="text-xl font-bold mb-4">Your Itinerary</h2>
+      <h2 className="text-xl font-bold mb-4">Your Schedule</h2>
       {sortedItinerary.length === 0 ? (
-        <p>No talks added to your itinerary yet.</p>
+        <p>You haven't added any talks to your schedule yet!</p>
       ) : (
         <div className="space-y-4">
           {sortedItinerary.map((talk) => (
@@ -41,15 +43,13 @@ const Itinerary = () => {
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900">{talk.title}</h3>
                 <p className="text-gray-500">{talk.speaker}</p>
-                <div className="flex flex-wrap gap-2 mt-2">
+                <p className="text-gray-500">Session: {talk.session}</p>
+                <span className="flex flex-wrap gap-2">
                   {talk.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 bg-gray-200 text-sm rounded">
-                      {tag}
-                    </span>
+                    <Tag key={index} text={tag} />
                   ))}
-                </div>
+                </span>
+                <Stars />
               </div>
               <div className="ml-4">
                 <button

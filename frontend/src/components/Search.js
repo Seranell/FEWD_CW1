@@ -14,7 +14,7 @@ function Search({ talks }) {
       <div>
           <div className="p-8">
             <input
-              className="form-control rounded-lg w-1/2"
+              className="form-control rounded-lg w-1/2 mx-28"
               type="text"
               placeholder="Search ..."
               onChange={(e) =>  setSearchField(e.target.value)}

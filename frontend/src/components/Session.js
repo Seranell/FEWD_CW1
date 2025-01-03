@@ -4,7 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import Description from "./Description";
+import AddItem from "./AddItem";
 import Tag from "./Tag";
+import StarAverage from "./StarAverage"
+
 import SliderSettings from "./SliderSettings";
 
 const Session = ({ talks }) => {
@@ -33,6 +36,11 @@ const Session = ({ talks }) => {
     );
   }
 
+  const toggleDesc = (index) => {
+    setOpenDesc(openDesc === index ? null : index);
+  };
+  
+  
   return (
     <div style={{ margin: "0 auto", width: "80%" }}>
         <div>
@@ -76,11 +84,18 @@ const Session = ({ talks }) => {
                     <Tag key={idx} text={tag} />
                   ))}
                 </div>
+
+                <div className="py-2">
+                <StarAverage ratings={talk.ratings} />
+                </div>
+
                 <Description
                   desc={talk.description}
                   isOpen={openDesc === index}
-                  onToggle={() => setOpenDesc(openDesc === index ? null : index)}
-                />
+                  onToggle={() => toggleDesc(index)}
+                  >
+                  {openDesc === index && <AddItem talk={talk} />}
+                  </Description>
               </div>
             ))}
           </Slider>

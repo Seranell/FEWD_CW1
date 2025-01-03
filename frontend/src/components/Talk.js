@@ -6,7 +6,7 @@ import Description from "./Description";
 import Tag from "./Tag";
 import SliderSettings from "./SliderSettings";
 import AddItem from "./AddItem";
-import Stars from "./Stars";
+import StarAverage from "./StarAverage"
 
 const Talk = ({ talks }) => {
   const [openDesc, setOpenDesc] = useState(null);
@@ -19,7 +19,8 @@ const Talk = ({ talks }) => {
     <SliderSettings>
       {(settings) => (
         <div style={{ margin: "0 auto", width: "80%" }}>
-          <Slider {...settings}>
+            <h2 className="text-2xl">All Talks</h2>
+            <Slider {...settings}>
             {talks.map((talk, index) => (
               <div key={talk.id} className="flex flex-col items-center px-20">
                 {talk.img && (
@@ -32,9 +33,11 @@ const Talk = ({ talks }) => {
                 <p class = "font-bold text-lg">{talk.speaker}</p>
                 <p>{talk.title}</p>
                 <p>{talk.time}</p>
-                <div>
-                <Stars />
+                
+                <div className="py-2">
+                <StarAverage ratings={talk.ratings} />
                 </div>
+
                 <div className="flex flex-wrap gap-2">
                   {talk.tags.map((tag, index) => (
                     <Tag key={index} text={tag} />
