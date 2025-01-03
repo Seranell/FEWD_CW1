@@ -10,4 +10,4 @@ npm start
 
 npm i 
 
-node Start
+node index
