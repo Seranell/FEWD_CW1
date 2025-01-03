@@ -12,19 +12,39 @@ import { useFavourites } from "./FavouritesContext";
 
 const Talk = ({ talks }) => {
   const [openDesc, setOpenDesc] = useState(null);
+  const [selectedTag, setSelectedTag] = useState(null); 
   const { interestedTalks, toggleFavourite } = useFavourites();
 
   const toggleDesc = (index) => {
     setOpenDesc(openDesc === index ? null : index);
   };
 
+  const filteredTalks = selectedTag
+    ? talks.filter((talk) => talk.tags.includes(selectedTag))
+    : talks;
+
   return (
     <SliderSettings>
       {(settings) => (
         <div style={{ margin: "0 auto", width: "80%" }}>
           <h2 className="text-2xl mb-4">All Talks</h2>
+
+          {selectedTag && (
+            <div className="mb-4">
+              <span>
+                Filtered by: <strong>{selectedTag}</strong>
+              </span>
+              <button
+                onClick={() => setSelectedTag(null)}
+                className="ml-4 text-blue-500 underline"
+              >
+                Clear Filter
+              </button>
+            </div>
+          )}
+
           <Slider {...settings}>
-            {talks.map((talk, index) => (
+            {filteredTalks.map((talk, index) => (
               <div key={talk.id} className="flex flex-col items-center px-20">
                 <Favourite
                   selected={interestedTalks.some((t) => t.id === talk.id)}
@@ -47,7 +67,11 @@ const Talk = ({ talks }) => {
 
                 <div className="flex flex-wrap gap-2">
                   {talk.tags.map((tag, index) => (
-                    <Tag key={index} text={tag} />
+                    <Tag
+                      key={index}
+                      text={tag}
+                      onClick={() => setSelectedTag(tag)}
+                    />
                   ))}
                 </div>
 

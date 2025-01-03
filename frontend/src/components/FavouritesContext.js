@@ -1,9 +1,13 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
+import {useLocalStorage} from "./useLocalStorage";
 
 const FavouritesContext = createContext();
 
 export const FavouritesProvider = ({ children }) => {
-  const [interestedTalks, setInterestedTalks] = useState([]);
+  const [interestedTalks, setInterestedTalks] = useLocalStorage(
+    "interestedTalks",
+    []
+  );
 
   const toggleFavourite = (talk) => {
     setInterestedTalks((prev) =>
