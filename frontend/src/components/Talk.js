@@ -59,7 +59,7 @@ const Talk = ({ talks }) => {
                 )}
                 <p className="font-bold text-lg">{talk.speaker}</p>
                 <p>{talk.title}</p>
-                <p>{talk.time}</p>
+                <p className="font-bold">{talk.time}</p>
 
                 <div className="py-2">
                   <StarAverage ratings={talk.ratings} />

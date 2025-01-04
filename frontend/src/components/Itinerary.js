@@ -6,11 +6,12 @@ import Stars from "./Stars";
 const Itinerary = () => {
   const { itinerary, remove } = useItinerary();
 
-  const formatTime = (timeString) => {
-    if (!timeString || !/^\d{2}:\d{2}$/.test(timeString)) {
+  //Ensure time is in hh:mm
+  const formatTime = (time) => {
+    if (!time || !/^\d{2}:\d{2}$/.test(time)) {
       return "Invalid time";
     }
-    return timeString;
+    return time;
   };
 
   //Sort talks into time order

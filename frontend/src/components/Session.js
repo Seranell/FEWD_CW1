@@ -100,7 +100,7 @@ const Session = ({ talks }) => {
                 )}
                 <p className="font-bold text-lg">{talk.speaker}</p>
                 <p>{talk.title}</p>
-
+                <p className="font-bold">{talk.time}</p>
                 <div className="flex flex-wrap gap-2">
                   {talk.tags.map((tag, idx) => (
                     <Tag
