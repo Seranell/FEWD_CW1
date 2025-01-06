@@ -29,8 +29,8 @@ function Tag({ text, onClick }) {
   return (
     <button
       onClick={onClick}
-      style={{ backgroundColor: color }} 
-      className="text-white px-2 py-1 text-sm rounded-lg hover:opacity-80 transition"
+      style={{ backgroundColor: color }}
+      className="text-white px-4 py-2 text-xs md:text-sm rounded-lg hover:opacity-80 transition-all duration-200"
     >
       {text}
     </button>

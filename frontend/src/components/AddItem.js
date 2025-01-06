@@ -18,7 +18,7 @@ const AddItem = ({ talk }) => {
         isAdded ? "bg-gray-300 text-gray-600" : "bg-blue-500 text-white hover:bg-blue-600"
       }`}
     >
-      {isAdded ? "Added" : "Add to Itinerary"}
+      {isAdded ? "Added" : "Attend"}
     </button>
   );
 };

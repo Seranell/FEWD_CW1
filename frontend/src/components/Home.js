@@ -4,13 +4,20 @@ import useFetchData from './useFetchData';
 import Itinerary from './Itinerary';
 import { ItineraryProvider } from './ItineraryContext';
 import { FavouritesProvider } from './FavouritesContext';
+import Popup from './Popup'
+import Nav from './Nav';
 
 const Home = () => {
     const {status, talks} = useFetchData();
     if (status === 'fetched')
+        
     return(
 <FavouritesProvider>
         <ItineraryProvider>
+            <Nav />
+            <span>
+                <Popup />
+            </span>
             <div>
                 <Itinerary />
             </div>

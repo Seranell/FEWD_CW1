@@ -34,7 +34,7 @@ const Session = ({ talks }) => {
 
   if (sessions.length === 0) {
     return (
-      <div style={{ margin: "0 auto", width: "80%", textAlign: "center" }}>
+      <div className="m-auto w-80 text-center">
         <h2 className="text-2xl font-bold">No talks found</h2>
       </div>
     );

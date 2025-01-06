@@ -1,11 +1,10 @@
-import { HiChevronDown } from "react-icons/hi";
-import { HiChevronUp } from "react-icons/hi";
+import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 
 function Description({ desc, isOpen, onToggle, children }) {
   return (
     <div className="w-full">
       <button
-        className="font-semibold flex items-center gap-2 hover:text-gray-500"
+        className="font-semibold flex items-center gap-2 text-gray-700 hover:text-gray-500"
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls="description-content"
@@ -20,13 +19,14 @@ function Description({ desc, isOpen, onToggle, children }) {
           </>
         )}
       </button>
+
       <div
         id="description-content"
         className={`overflow-hidden transition-all duration-500 ease-in-out mt-2`}
         style={{ maxHeight: isOpen ? "1000px" : "0px" }}
       >
-        <p>{desc}</p>
-        {isOpen && <div className="mt-2">{children}</div>} {/* Render children if open */}
+        <p className="text-sm text-gray-600">{desc}</p>
+        {isOpen && <div className="mt-2">{children}</div>}
       </div>
     </div>
   );
