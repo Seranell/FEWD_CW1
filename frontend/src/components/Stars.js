@@ -23,4 +23,3 @@ export default function StarRating({ position, totalStars = 5 }) {
       </div>
     );
   }
-  

@@ -6,4 +6,3 @@ export default function Favourite( props) {
     color={props.selected ? "#ECC94B" : "#A0AEC0"}
     onClick={props.onSelect} />;
 }
-
